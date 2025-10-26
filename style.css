@@ -1,0 +1,628 @@
+/* ========================================= */
+/* 1. VARIABEL & RESET DASAR                   */
+/* ========================================= */
+/* Styling untuk Ikon Logo Gambar */
+.logo-icon {
+    height: 35px; /* Atur tinggi ikon sesuai keinginan Anda */
+    width: auto; 
+    /* Menggunakan 'height' memastikan gambar pas di header */
+}
+
+/* Tambahkan ini untuk memastikan kontainer logo menyesuaikan ukuran gambar */
+.logo {
+    padding: 0;
+    margin: 0; 
+    display: flex;
+    align-items: center;
+}
+:root {
+    /* Komentar: Definisi Palet Warna Porsche 911 yang minimalis */
+    --color-black: #111111;
+    --color-white: #ffffff;
+    --color-red: #cc0000; /* Merah khas sport/performance */
+    --color-gray: #444444;
+    --color-light-gray: #f5f5f5;
+    --color-accent: var(--color-red);
+    --font-primary: 'Arial', sans-serif; /* Font sederhana dan modern */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-light-gray);
+    color: var(--color-black);
+    line-height: 1.6;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: var(--color-black);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-black);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* ========================================= */
+/* 2. HEADER DAN NAVIGASI                    */
+/* ========================================= */
+
+header {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: var(--color-white);
+}
+
+.logo strong {
+    /* Bagian ini sebelumnya menargetkan teks yang ada bintangnya, 
+       tetapi karena teksnya dihapus, kita biarkan saja */
+    color: var(--color-accent); 
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 25px;
+}
+
+.nav-links a {
+    color: var(--color-white);
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--color-accent);
+}
+
+.garage-btn {
+    background-color: var(--color-red);
+    color: var(--color-white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.garage-btn:hover {
+    background-color: #a30000;
+}
+
+/* Burger Menu (untuk mobile) */
+.burger {
+    display: none; /* Sembunyikan di desktop */
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-white);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* ========================================= */
+/* 3. TOMBOL BUY NOW KHUSUS MOBILE           */
+/* ========================================= */
+/* Komentar: Hanya muncul di mobile */
+.mobile-buy-now {
+    display: none; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 1.2em;
+    font-weight: bold;
+    z-index: 1010;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========================================= */
+/* 4. GARASI MOBIL SEDERHANA                 */
+/* ========================================= */
+/* Komentar: Panel samping untuk 'Garasi Mobil' */
+.car-garage {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%); /* Sembunyikan di luar layar */
+    transition: transform 0.4s ease-in-out;
+    padding: 20px;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.car-garage.open {
+    transform: translateX(0); /* Tampilkan saat class 'open' ditambahkan */
+}
+
+.car-garage h2 {
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--color-black);
+}
+
+#garage-list {
+    list-style: none;
+}
+
+#garage-list li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--color-light-gray);
+    font-size: 0.95em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#garage-list li:last-child {
+    border-bottom: none;
+}
+
+/* ========================================= */
+/* 5. KOMPONEN UMUM & SECTION                */
+/* ========================================= */
+
+section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+h2 strong {
+    color: var(--color-accent);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.primary-btn {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: 2px solid var(--color-accent);
+}
+
+.primary-btn:hover {
+    background-color: #a30000;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: 2px solid var(--color-black);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-gray);
+    border-color: var(--color-gray);
+    transform: translateY(-2px);
+}
+
+/* ========================================= */
+/* 6. HOME SECTION (HERO BANNER)             */
+/* ========================================= */
+
+.hero-banner {
+    /* Komentar: Atur gambar banner di sini */
+    background: url('images/porsche_banner.jpg') no-repeat center center/cover; 
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    position: relative;
+    padding: 0;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay hitam transparan */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    color: var(--color-white);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: var(--color-white);
+}
+
+/* ========================================= */
+/* 7. PRODUCT SECTION                        */
+/* ========================================= */
+
+.products-section {
+    background-color: var(--color-white);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    border: 1px solid var(--color-light-gray);
+    padding: 20px;
+    text-align: left;
+    background-color: var(--color-light-gray);
+    border-radius: 8px;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 1.5em;
+    color: var(--color-black);
+    margin-bottom: 10px;
+}
+
+.product-card .price {
+    color: var(--color-accent);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-card .description {
+    color: var(--color-gray);
+    margin-bottom: 15px;
+}
+
+/* ========================================= */
+/* 8. ABOUT & REVIEWS SECTION                */
+/* ========================================= */
+
+.about-section {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.about-section h2, .about-section p {
+    color: var(--color-white);
+}
+
+.about-section strong {
+    color: var(--color-accent);
+}
+
+.reviews-section {
+    background-color: var(--color-light-gray);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.review-card {
+    background-color: var(--color-white);
+    padding: 25px;
+    border-left: 5px solid var(--color-accent);
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.review-text {
+    font-style: italic;
+    margin-bottom: 10px;
+    color: var(--color-gray);
+}
+
+.reviewer {
+    font-weight: bold;
+    color: var(--color-black);
+    text-align: right;
+}
+
+/* ========================================= */
+/* 9. CONTACT SECTION                        */
+/* ========================================= */
+
+.contact-section {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.contact-section h2, .contact-info p {
+    color: var(--color-white);
+}
+
+.contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.contact-info i {
+    color: var(--color-accent);
+    margin-right: 10px;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    background-color: var(--color-gray);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* Social Media Icons */
+.social-media {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media a {
+    color: var(--color-white);
+    font-size: 1.8em;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: var(--color-accent);
+}
+
+/* ========================================= */
+/* 10. FOOTER                                */
+/* ========================================= */
+
+footer {
+    background-color: var(--color-black);
+    color: var(--color-gray);
+    padding: 40px 5%;
+    border-top: 5px solid var(--color-accent);
+    text-align: left;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col {
+    min-width: 250px;
+}
+
+.footer-col h4 {
+    color: var(--color-white);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li a {
+    color: var(--color-gray);
+    display: block;
+    padding: 5px 0;
+    font-size: 0.9em;
+}
+
+.footer-col ul li a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.footer-col p {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* ========================================= */
+/* 11. RESPONSIVE DESIGN (MOBILE FIRST)      */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    /* Header Mobile */
+    .nav-links {
+        /* Sembunyikan navigasi default */
+        position: absolute;
+        right: 0;
+        top: 60px; /* Di bawah header */
+        background-color: var(--color-black);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 0vh; /* Mulai dari 0 */
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease-in;
+        overflow: hidden;
+    }
+
+    .nav-links.nav-active {
+        height: 40vh; /* Tampilkan menu */
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-links li {
+        margin: 0;
+        padding: 15px 5%;
+        border-bottom: 1px solid var(--color-gray);
+        text-align: center;
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .burger {
+        display: block; /* Tampilkan hamburger */
+    }
+
+    /* Burger Animation */
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .line2 {
+        opacity: 0;
+    }
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* General Layout Mobile */
+    section {
+        padding: 40px 5%;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    /* Mobile Buy Now Button */
+    .mobile-buy-now {
+        display: block; /* Tampilkan di mobile */
+    }
+
+    .garage-btn {
+        display: none; /* Sembunyikan tombol 'Garage' di header saat mobile */
+    }
+    
+    .car-garage {
+        width: 100%;
+        padding-bottom: 60px; /* Beri ruang untuk tombol 'Buy Now' */
+    }
+
+    /* Footer Mobile */
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-col {
+        min-width: auto;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
